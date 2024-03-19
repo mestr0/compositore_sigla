@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="http://www.cibinrefrigerazione.com/2015/wp-content/uploads/2015/07/Cibin_favicon.png">
+        <title>Configuratore tavoli Cibin (versione 08/11/2023)</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="css/imported/bootstrap.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script type="text/javascript" src="js/imported/jquery-1.11.3.min.js"></script>
+
+        <script type="text/javascript" src="js/imported/bootstrap/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/imported/bootstrap/bootstrap-typeahead.min.js"></script>
+
+        <script type="text/javascript" src="js/polofin/utils.js"></script>
+        <style>
+            table#configuratore-tavoli h1,h2,h3,h4,h5,h6,h7{
+                margin-top: 10px;
+                margin-bottom: 5px;
+            }
+            table#configuratore-tavoli div.form-group{
+                margin-top: 2px;
+                margin-bottom: 2px;
+            }
+            table#configuratore-tavoli h1,h2,h3,h4,h5,h6,h7,select.form-control{
+                color: #1B1464;
+            }
+            table#configuratore-tavoli select.form-control{
+                font-size: 22px;
+            }
+        </style>
+    </head>
+    <div class="container">
+        <div id="inizioConfiguratore"class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <hr>
+                    <h1 style="text-align: center; margin-bottom: 25px; text-transform: uppercase;"><strong class="blu">Configuratore tavoli Cibin</strong></h1>
+                </div>
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Sigla di partenza: </h2>
+                </div>
+                <div class="col-lg-8 col-lg-offset-1">
+                    <div class="form-group">
+                        <h></h>
+                    <form class>
+                        <textarea id="text-areainiziale" placeholder="T R GN B 2 0 H1 D1 PDX G j r s" class="form-control blu" rows="1"/></textarea> 
+                    </form>
+
+                        <h></h>
+                        <hr>
+                        <button class="button34" id="button34" role="button">Visualizza opzioni</button>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <div class="row">
+                            <button>
+                                <span id="button-precompilo" class="text">Precompila</span>
+                              </button>
+                            <hr>
+                                <button style="margin-top:30px;"  onclick="resetPage();"  class="button1">
+                                  <p class="text">Reset</p>
+                                </button>
+                            </div>
+                                <!--------------------script per il button reset (resetta i select e le checkbox)----------------------->
+                                <script>
+                                    function resetPage() {
+                                        location.reload();
+                                    }
+                                </script>
+                        </div>    
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <hr>
+                </div>
+                <div class="col-lg-10 col-lg-offset-1">
+                    <table id="configuratore-tavoli" class="table table-bordered table-hover table-responsive table-striped">
+                        <thead></thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h3>Linea Tavoli o Pensili</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla" id="linea_tavoli_o_linea_pensili" onchange="unlock('compressore_autonomo_o_compressore_remoto')">
+                                            
+                                            <option value=""></option>
+                                            <option value="T">Tavolo - T</option>
+                                            <option value="P">Pensile - P</option>
+                                            <option value="B">Abbattitore - B</option>
+                                            <option value="A">Armadio - A</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Profondità</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla" id="profondita" onchange="unlock('allestimento_vano_1')" >
+                                            <option value=""></option>
+                                            <option value="D1">710 mm - D1</option>
+                                            <option value="D2">500 mm - D2</option>
+                                            <option value="D3">790 mm - D3</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Altezza</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla"  id="altezza" onchange="unlock('profondita')" >
+                                            <option value=""></option>
+                                            <option value="H1">800 mm - H1</option>
+                                            <option value="H2">557 mm - H2</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Compressore Autonomo o Remoto</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla"  id="compressore_autonomo_o_compressore_remoto" onchange="unlock('tavolo_gastronorm_o_tavolo_backnorm')" >
+                                            <option value=""></option>
+                                            <option value="A">Autonomo - A</option>
+                                            <option value="R">Remoto - R</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Tavolo Gastronorm o Backnorm</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla"  id="tavolo_gastronorm_o_tavolo_backnorm" onchange="unlock('campo_temperatura')" >
+                                            <option value=""></option>
+                                            <option value="GN">Gastronorm - GN</option>
+                                            <option value="BK">Backnorm - BK</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Campo Temperatura</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla"  id="campo_temperatura" onchange="unlock('numero_di_vani')" >
+                                            <option value=""></option>
+                                            <option value="N">Normale - N</option>
+                                            <option value="B">Bassa temperatura - B</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Numero di vani</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla" id="numero_di_vani" onchange="unlock('numero_di_teglie')" >
+                                            <option value=""></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Numero di teglie</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla" id="numero_di_teglie" onchange="unlock('altezza')" >
+                                            <option value=""></option>
+                                            <option value="0">0</option>
+                                            <option value="9">9</option>
+                                            <option value="99">18</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h3>Allestimento Vano 1</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla allestimento_vani" id="allestimento_vano_1" onchange="unlock('allestimento_vano_2')">
+                                            <option value=""></option>
+                                            <option value="PSX">Porta standard inox sinistra - PSX</option>
+                                            <option value="PDX">Porta standard inox destra - PDX</option>
+                                            <option value="VSX">Porta vetro sinistra - VSX</option>
+                                            <option value="VDX">Porta vetro destra - VDX</option>
+                                            <option value="F">Cassetti per tavolo 1/2 1/2 - F</option>
+                                            <option value="E">Cassetti per tavolo 1/3 1/3 1/3 - E</option>
+                                            <option value="G">Cassetti per tavolo 1/3 2/3 - G</option>
+                                            <option value="I">Cassetti per tavolo H2 1/1 - I</option>
+                                            <option value="L">Cassetti per tavolo H2 1/2 1/2 - L</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Allestimento Vano 2</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla allestimento_vani" id="allestimento_vano_2" onchange="unlock('allestimento_vano_3')">
+                                            <option value="-">-</option>
+                                            <option value="PSX">Porta standard inox sinistra - PSX</option>
+                                            <option value="PDX">Porta standard inox destra - PDX</option>
+                                            <option value="VSX">Porta vetro sinistra - VSX</option>
+                                            <option value="VDX">Porta vetro destra - VDX</option>
+                                            <option value="F">Cassetti per tavolo 1/2 1/2 - F</option>
+                                            <option value="E">Cassetti per tavolo 1/3 1/3 1/3 - E</option>
+                                            <option value="G">Cassetti per tavolo 1/3 2/3 - G</option>
+                                            <option value="I">Cassetti per tavolo H2 1/1 - I</option>
+                                            <option value="L">Cassetti per tavolo H2 1/2 1/2 - L</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Allestimento Vano 3</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla allestimento_vani" id="allestimento_vano_3" onchange="unlock('allestimento_vano_4')">
+                                            <option value="-">-</option>
+                                            <option value="PSX">Porta standard inox sinistra - PSX</option>
+                                            <option value="PDX">Porta standard inox destra - PDX</option>
+                                            <option value="VSX">Porta vetro sinistra - VSX</option>
+                                            <option value="VDX">Porta vetro destra - VDX</option>
+                                            <option value="F">Cassetti per tavolo 1/2 1/2 - F</option>
+                                            <option value="E">Cassetti per tavolo 1/3 1/3 1/3 - E</option>
+                                            <option value="G">Cassetti per tavolo 1/3 2/3 - G</option>
+                                            <option value="I">Cassetti per tavolo H2 1/1 - I</option>
+                                            <option value="L">Cassetti per tavolo H2 1/2 1/2 - L</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3>Allestimento Vano 4</h3>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control controllo-costruzione-sigla allestimento_vani" id="allestimento_vano_4" onchange="unlock('piedini')">
+                                            <option value="-">-</option>
+                                            <option value="PSX">Porta standard inox sinistra - PSX</option>
+                                            <option value="PDX">Porta standard inox destra - PDX</option>
+                                            <option value="VSX">Porta vetro sinistra - VSX</option>
+                                            <option value="VDX">Porta vetro destra - VDX</option>
+                                            <option value="F">Cassetti per tavolo 1/2 1/2 - F</option>
+                                            <option value="E">Cassetti per tavolo 1/3 1/3 1/3 - E</option>
+                                            <option value="G">Cassetti per tavolo 1/3 2/3 - G</option>
+                                            <option value="I">Cassetti per tavolo H2 1/1 - I</option>
+                                            <option value="L">Cassetti per tavolo H2 1/2 1/2 - L</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3 class="h3-finali">Piedini</h3>
+                                </td>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox"  id="piedini" value="j" onchange="unlock('rivestimento')"/>
+                                        <div class="checkmark"></div>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3 class="h3-finali">Versione per rivestimento</h3>
+                                </td>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox"  id="rivestimento" value="r" onchange="unlock('pompa')"/>
+                                        <div class="checkmark"></div>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3 class="h3-finali">Pompa</h3>
+                                </td>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox"  id="pompa" value="p" onchange="unlock('foro')"/>
+                                        <div class="checkmark"></div>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3 class="h3-finali">Foro saladette</h3>
+                                </td>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="foro" value="s"/>
+                                        <div class="checkmark"></div>
+                                    </label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2 style="font-size: 25px;">Sigla determinata: </h2>
+                    <div class="form-group">
+                        <textarea readonly class="form-control blu" rows="1" id="contenitore-sigla"></textarea>
+                        <div class="centralize">
+                            <div>
+                              <copy-button id="copy-button">
+                                <span><svg viewBox="0 0 467 512.22" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" fill="#0E418F" height="12" width="12"><path d="M131.07 372.11c.37 1 .57 2.08.57 3.2 0 1.13-.2 2.21-.57 3.21v75.91c0 10.74 4.41 20.53 11.5 27.62s16.87 11.49 27.62 11.49h239.02c10.75 0 20.53-4.4 27.62-11.49s11.49-16.88 11.49-27.62V152.42c0-10.55-4.21-20.15-11.02-27.18l-.47-.43c-7.09-7.09-16.87-11.5-27.62-11.5H170.19c-10.75 0-20.53 4.41-27.62 11.5s-11.5 16.87-11.5 27.61v219.69zm-18.67 12.54H57.23c-15.82 0-30.1-6.58-40.45-17.11C6.41 356.97 0 342.4 0 326.52V57.79c0-15.86 6.5-30.3 16.97-40.78l.04-.04C27.51 6.49 41.94 0 57.79 0h243.63c15.87 0 30.3 6.51 40.77 16.98l.03.03c10.48 10.48 16.99 24.93 16.99 40.78v36.85h50c15.9 0 30.36 6.5 40.82 16.96l.54.58c10.15 10.44 16.43 24.66 16.43 40.24v302.01c0 15.9-6.5 30.36-16.96 40.82-10.47 10.47-24.93 16.97-40.83 16.97H170.19c-15.9 0-30.35-6.5-40.82-16.97-10.47-10.46-16.97-24.92-16.97-40.82v-69.78zM340.54 94.64V57.79c0-10.74-4.41-20.53-11.5-27.63-7.09-7.08-16.86-11.48-27.62-11.48H57.79c-10.78 0-20.56 4.38-27.62 11.45l-.04.04c-7.06 7.06-11.45 16.84-11.45 27.62v268.73c0 10.86 4.34 20.79 11.38 27.97 6.95 7.07 16.54 11.49 27.17 11.49h55.17V152.42c0-15.9 6.5-30.35 16.97-40.82 10.47-10.47 24.92-16.96 40.82-16.96h170.35z" fill-rule="nonzero"></path></svg> Copia</span>
+                              </copy-button>
+                            <div>
+                          <div></div></div></div></div></div></div>
+                    </div>
+                <script>
+                    document.querySelector('#copy-button').addEventListener('click', function() {
+                    var textarea = document.querySelector('#contenitore-sigla');
+                    textarea.select();
+                    document.execCommand('copy');
+                    });
+                </script>
+                </div>
+                <div class="col-lg-12">
+                    <hr>
+                </div>
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Prototipo rendering vista frontale: </h2>
+                    <div style="background-color: white; display: inline-block;">
+                        <canvas id="canvas-tavolo" width="1200" height="440" style="border:1px solid #d3d3d3; display: none;">
+                            Your browser does not support the HTML5 canvas tag.
+                        </canvas>
+                    </div>
+                    <img id="allestimento-vano-PSX" src="images/allestimenti_vani/allestimento_vano_PSX.png" alt="allestimento vano PSX" style="display:none;">
+                    <img id="allestimento-vano-PDX" src="images/allestimenti_vani/allestimento_vano_PDX.png" alt="allestimento vano PDX" style="display:none;">
+                    <img id="allestimento-vano-VSX" src="images/allestimenti_vani/allestimento_vano_VSX.png" alt="allestimento vano VSX" style="display:none;">
+                    <img id="allestimento-vano-VDX" src="images/allestimenti_vani/allestimento_vano_VDX.png" alt="allestimento vano VDX" style="display:none;">
+                    <img id="allestimento-vano-E" src="images/allestimenti_vani/allestimento_vano_E.png" alt="allestimento vano E" style="display:none;">
+                    <img id="allestimento-vano-F" src="images/allestimenti_vani/allestimento_vano_F.png" alt="allestimento vano F" style="display:none;">
+                    <img id="allestimento-vano-G" src="images/allestimenti_vani/allestimento_vano_G.png" alt="allestimento vano G" style="display:none;">
+                    <img id="allestimento-vano-I" src="images/allestimenti_vani/allestimento_vano_I.png" alt="allestimento vano I" style="display:none;">
+                    <img id="allestimento-vano-M" src="images/allestimenti_vani/allestimento_vano_M.png" alt="allestimento vano M" style="display:none;">
+                    <img id="allestimento-vano-N" src="images/allestimenti_vani/allestimento_vano_N.png" alt="allestimento vano N" style="display:none;">
+                    <img id="allestimento-vano--" src="images/allestimenti_vani/allestimento_vano_-.png" alt="allestimento vano -" style="display:none;">
+                    <img id="allestimento-vano-no_vano" src="images/allestimenti_vani/allestimento_vano_-no_vano.png" alt="allestimento vano no_vano" style="display:none;">
+
+                    <img id="tavolo-1-vani" src="images/tavoli/tavolo_1_vani.png" alt="tavolo un vano" style="display:none;">
+                    <img id="tavolo-2-vani" src="images/tavoli/tavolo_2_vani.png" alt="tavolo due vani" style="display:none;">
+                    <img id="tavolo-3-vani" src="images/tavoli/tavolo_3_vani.png" alt="tavolo tre vani" style="display:none;">
+                    <img id="tavolo-4-vani" src="images/tavoli/tavolo_4_vani.png" alt="tavolo quattro vani" style="display:none;">
+                </div>
+            </div>
+        </div>
+    </div>               
+        <script>
+
+            $(document).ready(function () {
+                console.log("configuratore tavoli cibin - index.html ready");
+                $('select#linea_tavoli_o_linea_pensili').trigger('change');
+                $('select#numero_di_vani').trigger('change');
+                $('select#numero_di_teglie').trigger('change');
+                $('select#altezza').trigger('change');
+            });
+
+            $('button#button-precompilo').on('click', function () {
+                var sigla = $('input#text-areainiziale').val();
+                var siglaSenzaSpazi = sigla.replace(/ /g, '');
+                if (sigla !== undefined) {
+                    try {
+                        funzionePrecompilaDaSigla(siglaSenzaSpazi);
+                    } catch (e) {
+                        alert('sigla non valida, e: ' + e);
+                    }
+                    setTimeout(function () {
+                        funzioneVisualizzaRisultato();
+                    }, 2000);
+                }
+            });
+
+            function funzionePrecompilaDaSigla(sigla) {
+                console.log('funzionePrecompilaDaSigla sigla: ' + sigla);
+                var lineaTavoliOPensili = sigla.charAt(0);
+                console.log('lineaTavoliOPensili: ' + lineaTavoliOPensili);
+                switch (lineaTavoliOPensili) {
+                    case 'T':
+                    case 'P':
+                    case 'B':
+                    case 'A':
+                        $('select#linea_tavoli_o_linea_pensili').val(lineaTavoliOPensili);
+                        $('select#linea_tavoli_o_linea_pensili').trigger('change');
+                        break;
+                    default :
+                        throw new Error('switch lineaTavoliOPensili');
+                }
+                
+                var altezza = sigla.substring(6, 8);
+                console.log('altezza: ' + altezza);
+                switch (altezza) {
+                    case '' :
+                    case 'H1':
+                    case 'H2':
+                        $('select#altezza').val(altezza);
+                        $('select#altezza').trigger('change');
+                        break;
+                    default :
+                        throw new Error('switch altezza');
+                }
+                var compressoreAutonomoRemoto = sigla.charAt(1);
+                console.log('compressoreAutonomoRemoto: ' + compressoreAutonomoRemoto);
+                switch (compressoreAutonomoRemoto) {
+                    case 'A':
+                    case 'R':
+                        $('select#compressore_autonomo_o_compressore_remoto').val(compressoreAutonomoRemoto);
+                        $('select#compressore_autonomo_o_compressore_remoto').trigger('change');
+                        break;
+                    default :
+                        throw new Error('switch compressoreAutonomoRemoto');
+                }
+                var tavoloGastronormBacknorm = sigla.substring(2, 4);
+                console.log('tavoloGastronormBacknorm: ' + tavoloGastronormBacknorm);
+                switch (tavoloGastronormBacknorm) {
+                    case '' :
+                    case 'GN':
+                    case 'BK':
+                        $('select#tavolo_gastronorm_o_tavolo_backnorm').val(tavoloGastronormBacknorm);
+                        $('select#tavolo_gastronorm_o_tavolo_backnorm').trigger('change');
+                        break;
+                    default :
+                        throw new Error('switch tavoloGastronormBacknorm');
+                }
+                var campoTemperatura = sigla.charAt(4);
+                console.log('campoTemperatura: ' + campoTemperatura);
+                switch (campoTemperatura) {
+                    case '' :
+                    case 'N':
+                    case 'B':
+                        $('select#campo_temperatura').val(campoTemperatura);
+                        $('select#campo_temperatura').trigger('change');
+                        break;
+                    default :
+                        throw new Error('switch campoTemperatura');
+                }
+                var numeroDiVani = sigla.charAt(5);
+                console.log('numeroDiVani: ' + numeroDiVani);
+                switch (numeroDiVani) {
+                    case '' :
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                        $('select#numero_di_vani').val(numeroDiVani);
+                        $('select#numero_di_vani').trigger('change');
+                        break;
+                    default :
+                        throw new Error('switch numeroDiVani');
+                }
+                var numeroDiTeglie = sigla.charAt(5);
+                console.log('numeroDiTeglie: ' + numeroDiTeglie);
+                switch (numeroDiTeglie) {
+                    case '' :
+                    case '9':
+                    case '9+':
+                        $('select#numero_di_teglie').val(numeroDiTeglie);
+                        $('select#numero_di_teglie').trigger('change');
+                        break;
+                    default :
+                        throw new Error('switch numeroDiTeglie');
+                }
+                var indiceInizioSigleVani = 10;
+                var indiceInizioOptional = indiceInizioSigleVani;
+                var indiceInizioeVanoAttuale = indiceInizioSigleVani;
+                var primaLetteraVano1 = sigla.charAt(indiceInizioSigleVani);
+                console.log('primaLetteraVano1: ' + primaLetteraVano1);
+                var vano1;
+                var numeroLettereVano1;
+                switch (primaLetteraVano1) {
+                    case 'E':
+                    case 'F':
+                    case 'G':
+                    case 'I':
+                    case 'L':
+                        numeroLettereVano1 = 1;
+                        vano1 = primaLetteraVano1;
+                        $('select#allestimento_vano_1').val(vano1);
+                        $('select#allestimento_vano_1').trigger('change');
+                        console.log('una lettera vano1: ' + vano1);
+                        break;
+                    case 'P':
+                    case 'V':
+                        numeroLettereVano1 = 3;
+                        vano1 = sigla.substring(indiceInizioeVanoAttuale, indiceInizioeVanoAttuale + numeroLettereVano1);
+                        $('select#allestimento_vano_1').val(vano1);
+                        $('select#allestimento_vano_1').trigger('change');
+                        console.log('3 lettere vano1: ' + vano1);
+                        break;
+                    default :
+                        throw new Error('switch primaLetteraVano1');
+                }
+                indiceInizioOptional += numeroLettereVano1;
+                if (numeroDiVani > 1) {
+                    indiceInizioeVanoAttuale += numeroLettereVano1; // mi posiziono dove inizia il secondo vano;
+                    var primaLetteraVano2 = sigla.charAt(indiceInizioeVanoAttuale);
+                    console.log('primaLetteraVano2: ' + primaLetteraVano2);
+                    var vano2;
+                    var numeroLettereVano2;
+                    switch (primaLetteraVano2) {
+                        case 'E':
+                        case 'F':
+                        case 'G':
+                        case 'I':
+                        case 'L':
+                            numeroLettereVano2 = 1;
+                            vano2 = primaLetteraVano2;
+                            $('select#allestimento_vano_2').val(vano2);
+                            $('select#allestimento_vano_2').trigger('change');
+                            console.log('vano2: ' + vano2);
+                            break;
+                        case 'P':
+                        case 'V':
+                            numeroLettereVano2 = 3;
+                            vano2 = sigla.substring(indiceInizioeVanoAttuale, indiceInizioeVanoAttuale + numeroLettereVano2);
+                            $('select#allestimento_vano_2').val(vano2);
+                            $('select#allestimento_vano_2').trigger('change');
+                            console.log('vano2: ' + vano2);
+                            break;
+                        default :
+                            throw new Error('switch primaLetteraVano2');
+                    }
+                    indiceInizioOptional += numeroLettereVano2;
+                    if (numeroDiVani > 2) {
+                        indiceInizioeVanoAttuale += numeroLettereVano2; // mi posiziono dove inizia il terzo vano;
+                        var primaLetteraVano3 = sigla.charAt(indiceInizioeVanoAttuale);
+                        console.log('primaLetteraVano3: ' + primaLetteraVano3);
+                        var vano3;
+                        var numeroLettereVano3;
+                        switch (primaLetteraVano3) {
+                            case 'E':
+                            case 'F':
+                            case 'G':
+                            case 'I':
+                            case 'L':
+                                numeroLettereVano3 = 1;
+                                vano3 = primaLetteraVano3;
+                                $('select#allestimento_vano_3').val(vano3);
+                                $('select#allestimento_vano_3').trigger('change');
+                                console.log('vano3: ' + vano3);
+                                break;
+                            case 'P':
+                            case 'V':
+                                numeroLettereVano3 = 3;
+                                vano3 = sigla.substring(indiceInizioeVanoAttuale, indiceInizioeVanoAttuale + numeroLettereVano3);
+                                $('select#allestimento_vano_3').val(vano3);
+                                $('select#allestimento_vano_3').trigger('change');
+                                console.log('vano3: ' + vano3);
+                                break;
+                            default :
+                                throw new Error('switch primaLetteraVano3');
+                        }
+                        indiceInizioOptional += numeroLettereVano3;
+                        if (numeroDiVani > 3) {
+                            indiceInizioeVanoAttuale += numeroLettereVano3; // mi posiziono dove inizia il quarto vano;
+                            var primaLetteraVano4 = sigla.charAt(indiceInizioeVanoAttuale);
+                            console.log('primaLetteraVano4: ' + primaLetteraVano4);
+                            var vano4;
+                            var numeroLettereVano4;
+                            switch (primaLetteraVano4) {
+                                case 'E':
+                                case 'F':
+                                case 'G':
+                                case 'I':
+                                case 'L':
+                                    numeroLettereVano4 = 1;
+                                    vano4 = primaLetteraVano4;
+                                    $('select#allestimento_vano_4').val(vano4);
+                                    $('select#allestimento_vano_4').trigger('change');
+                                    console.log('vano4: ' + vano4);
+                                    break;
+                                case 'P':
+                                case 'V':
+                                    numeroLettereVano4 = 3;
+                                    vano4 = sigla.substring(indiceInizioeVanoAttuale, indiceInizioeVanoAttuale + numeroLettereVano4);
+                                    $('select#allestimento_vano_4').val(vano4);
+                                    $('select#allestimento_vano_4').trigger('change');
+                                    console.log('vano4: ' + vano4);
+                                    break;
+                                default :
+                                    throw new Error('switch primaLetteraVano4');
+                            }
+                            indiceInizioOptional += numeroLettereVano4;
+                        } 
+                    }
+                }
+                console.log('indiceInizioOptional: ' + indiceInizioOptional);
+                var sottostringaOptional = sigla.substring(indiceInizioOptional);
+                console.log('sottostringaOptional: ' + sottostringaOptional);
+                gestisciLetteraOptional(sottostringaOptional, 'j', 'input#piedini');
+                gestisciLetteraOptional(sottostringaOptional, 'r', 'input#versione_per_rivestimento');
+                gestisciLetteraOptional(sottostringaOptional, 'p', 'input#pompa');
+                gestisciLetteraOptional(sottostringaOptional, 's', 'input#foro_saladette');
+            }
+
+            function gestisciLetteraOptional(sottostringaOptional, lettera, selettoreSelectLetteraOptional) {
+                    if (sottostringaOptional.includes(lettera)) {
+                        $(selettoreSelectLetteraOptional).val(lettera);
+                    } else {
+                        $(selettoreSelectLetteraOptional).val('');
+                    }
+                    $(selettoreSelectLetteraOptional).trigger('change');
+                }
+
+            function valoreSelect(id) {
+                return $('select#' + id).val();
+            }
+
+            function valoreInput(id) {
+            var checkbox = $('input#' + id);
+            return checkbox.is(':checked') ? checkbox.val() : '';
+        }
+
+            function riempiSigla() {
+                var sigla = '';
+                sigla += valoreSelect('linea_tavoli_o_linea_pensili');
+                sigla += valoreSelect('compressore_autonomo_o_compressore_remoto');
+                sigla += valoreSelect('tavolo_gastronorm_o_tavolo_backnorm');
+                sigla += ' ';
+                sigla += valoreSelect('campo_temperatura');
+                sigla += ' ';
+                sigla += valoreSelect('numero_di_vani');
+                sigla += valoreSelect('numero_di_teglie');
+                sigla += ' ';
+                sigla += valoreSelect('altezza');
+                sigla += valoreSelect('profondita');
+                sigla += ' ';
+                sigla += valoreSelect('allestimento_vano_1');
+                var numeroVani = valoreSelect('numero_di_vani');
+                var numeroTeglie = valoreSelect('numero_di_teglie');
+            
+                if (numeroVani >= 2) {
+                    sigla += valoreSelect('allestimento_vano_2');
+                }
+                if (numeroVani >= 3) {
+                    sigla += valoreSelect('allestimento_vano_3');
+                }
+                if (numeroVani >= 4) {
+                    sigla += valoreSelect('allestimento_vano_4');
+                }
+                sigla += ' ';
+                sigla += valoreInput('piedini');
+                sigla += valoreInput('versione_per_rivestimento');
+                sigla += valoreInput('pompa');
+                sigla += valoreInput('foro_saladette');
+                $('#contenitore-sigla').html(sigla);
+            }
+
+            function funzioneVisualizzaRisultato() {
+                console.log('funzioneVisualizzaRisultato() called');
+                riempiSigla();
+                assegnaTavoloNumeroVani();
+                assegnaVaniScelti();
+                mostraCanvasTavolo();
+            }
+
+
+            $('.controllo-costruzione-sigla').on('change', function () {
+                console.log('evento .controllo-costruzione-sigla');
+                console.log($(this).val());
+                funzioneVisualizzaRisultato();
+            });
+        </script>
+
+        <script>
+
+            $('select#linea_tavoli_o_linea_pensili').on('change', function () {
+                console.log('evento select#linea_tavoli_o_linea_pensili');
+                var valoreLinea = $(this).val();
+                console.log('valoreLinea: ' + valoreLinea);
+                var selettoreCompressoreAutonomooRemoto = 'select#tavolo_gastronorm_o_tavolo_backnorm';
+                switch (valoreLinea) {
+                    case 'T':
+                        $(selettoreCompressoreAutonomooRemoto).html('<option value="GN">Gastronorm - GN</option><option value="BK">Backnorm - BK</option>');
+                        break;
+                    case 'P':
+                        $(selettoreCompressoreAutonomooRemoto).html('<option value="GN">Gastronorm - GN</option>');
+                        break;
+                    
+                }
+                var valoreCompressoreAutonomooRemoto = $(selettoreCompressoreAutonomooRemoto).val();
+                aggiornaElenchiDimensioni(valoreLinea, valoreCompressoreAutonomooRemoto);
+            });
+
+            $('select#tavolo_gastronorm_o_tavolo_backnorm').on('change', function () {
+                console.log('evento select#tavolo_gastronorm_o_tavolo_backnorm');
+                var selettoreLinea = 'select#linea_tavoli_o_linea_pensili';
+                var valoreLinea = $(selettoreLinea).val();
+                var valoreCompressoreAutonomooRemoto = $(this).val();
+                aggiornaElenchiDimensioni(valoreLinea, valoreCompressoreAutonomooRemoto);
+            });
+
+            function aggiornaElenchiDimensioni(valoreLineaTavoliOPensili, valoreGastronormOBackNorm) {
+                console.log('*****');
+                console.log('aggiornaElenchiDimensioni, valoreLineaTavoliOPensili: ' + valoreLineaTavoliOPensili);
+                console.log('aggiornaElenchiDimensioni, valoreGastronormOBackNorm: ' + valoreGastronormOBackNorm);
+                console.log('*****');
+                var selettoreSelectAltezza = 'select#altezza';
+                var selettoreSelectProfondita = 'select#profondita';
+                switch (valoreLineaTavoliOPensili) {
+                    case 'T':
+                        switch (valoreGastronormOBackNorm) {
+                            case 'GN':
+                                $(selettoreSelectAltezza).html('<option value="H1">800 mm - H1</option><option value="H2">557 mm - H2</option>');
+                                $(selettoreSelectProfondita).html('<option value="D1">710 mm - D1</option><option value="D2">500 mm - D2</option><option value="D3">790 mm - D3</option>');
+                                break;
+                            case 'BK':
+                                $(selettoreSelectAltezza).html('<option value="H1">800 mm - H1</option>');
+                                $(selettoreSelectProfondita).html('<option value="D3">790 mm - D3</option>');
+                                break;
+                        }
+                        break;
+                    case 'P':
+                        $(selettoreSelectAltezza).html('<option value="H1">800 mm - H1</option>');
+                        $(selettoreSelectProfondita).html('<option value="D2">500 mm - D2</option>');
+                        break;
+                }
+                $(selettoreSelectAltezza).trigger('change');
+            }
+
+            $('select#numero_di_vani').on('change', function () {
+                console.log('evento select#numero_di_vani');
+                var numeroVani = $(this).val();
+                console.log('numeroVani: ' + numeroVani);
+                if (numeroVani < 4) {
+                    $('select#allestimento_vano_4').val('-');
+                    $('select#allestimento_vano_4').prop('disabled', true);
+                } else {
+                    $('select#allestimento_vano_4').prop('disabled', false);
+                }
+                if (numeroVani < 3) {
+                    $('select#allestimento_vano_3').val('-');
+                    $('select#allestimento_vano_3').prop('disabled', true);
+                } else {
+                    $('select#allestimento_vano_3').prop('disabled', false);
+                }
+                if (numeroVani < 2) {
+                    $('select#allestimento_vano_2').val('-');
+                    $('select#allestimento_vano_2').prop('disabled', true);
+                } else {
+                    $('select#allestimento_vano_2').prop('disabled', false);
+                }
+                funzioneVisualizzaRisultato();
+            });
+
+
+            $('select#numero_di_teglie').on('change', function () {
+                console.log('evento select#numero_di_teglie');
+                var numeroTeglie = $(this).val();
+                console.log('numeroTeglie: ' + numeroTeglie);
+                funzioneVisualizzaRisultato();
+            });
+
+
+            $('select#altezza').on('change', function () {
+                console.log('evento select#altezza');
+                var altezza = $(this).val();
+                console.log('altezza: ' + altezza);
+                var selettoreSelectAllestimentoVani = 'select.allestimento_vani';
+                $(selettoreSelectAllestimentoVani).html('<option value="-">-</option><option value="PSX">Porta standard inox sinistra - PSX</option><option value="PDX">Porta standard inox destra - PDX</option><option value="VSX">Porta vetro sinistra - VSX</option><option value="VDX">Porta vetro destra - VDX</option>');
+                switch (altezza) {
+                    case 'H1':
+                        var selettoreLineaTavoliOLineaPensili = 'select#linea_tavoli_o_linea_pensili';
+                        var valoreSelettoreLineaTavoliOLineaPensili = $(selettoreLineaTavoliOLineaPensili).val();
+                        if (valoreSelettoreLineaTavoliOLineaPensili === 'T') {
+                            $(selettoreSelectAllestimentoVani).append('<option value="F">Cassetti per tavolo 1/2 1/2 - F</option><option value="E">Cassetti per tavolo 1/3 1/3 1/3 - E</option><option value="G">Cassetti per tavolo 1/3 2/3 - G</option>');
+                        }
+                        break;
+                    case 'H2':
+                        $(selettoreSelectAllestimentoVani).append('<option value="I">Cassetti per tavolo H2 1/1 - I</option><option value="F">Cassetti per tavolo H2 1/2 1/2 - F</option>');
+                        break;
+                }
+                funzioneVisualizzaRisultato();
+            });
+            
+        </script>
+
+        <script>
+
+                        var tavoloNumeroVaniScelto;
+
+                        var vani = [
+                            {},
+                            {coordinataX: 150, coordinataY: 50, vanoScelto: 'PSX'},
+                            {coordinataX: 390, coordinataY: 50, vanoScelto: undefined},
+                            {coordinataX: 630, coordinataY: 50, vanoScelto: undefined},
+                            {coordinataX: 870, coordinataY: 50, vanoScelto: undefined}
+                        ];
+
+                        function assegnaTavoloNumeroVani() {
+                            var numeroVani = valoreSelect('numero_di_vani');
+                            tavoloNumeroVaniScelto = numeroVani;
+                        }
+
+                        function assegnaVaniScelti() {
+                            vani[1].vanoScelto = valoreSelect('allestimento_vano_1');
+                            var numeroVani = valoreSelect('numero_di_vani');
+                            if (numeroVani >= 2) {
+                                vani[2].vanoScelto = valoreSelect('allestimento_vano_2');
+                            } else {
+                                vani[2].vanoScelto = undefined;
+                            }
+                            if (numeroVani >= 3) {
+                                vani[3].vanoScelto = valoreSelect('allestimento_vano_3');
+                            } else {
+                                vani[3].vanoScelto = undefined;
+                            }
+                            if (numeroVani >= 4) {
+                                vani[4].vanoScelto = valoreSelect('allestimento_vano_4');
+                            } else {
+                                vani[4].vanoScelto = undefined;
+                            }
+                        }
+
+                        function mostraCanvasTavolo() {
+                            var selettoreCanvas = 'canvas-tavolo';
+                            var canvas = document.getElementById(selettoreCanvas);
+                            var contestoCanvas = canvas.getContext('2d');
+                            contestoCanvas.clearRect(0, 0, canvas.width, canvas.height);
+
+                            mostraSfondoTavoloNumeroVaniScelto(contestoCanvas);
+                            mostraVaniSceltiSuCanvasTavalo(contestoCanvas);
+
+                            canvas.style.display = 'block';
+                        }
+
+                        function mostraSfondoTavoloNumeroVaniScelto(contestoCanvas) {
+                            var immagineTavoloNumeroVani = document.getElementById('tavolo-' + tavoloNumeroVaniScelto + '-vani');
+                            contestoCanvas.drawImage(immagineTavoloNumeroVani, 20, 20);
+                        }
+
+                        function mostraVaniSceltiSuCanvasTavalo(contestoCanvas) {
+                            mostraVanoSuCanvasTavolo(contestoCanvas, 1);
+                            mostraVanoSuCanvasTavolo(contestoCanvas, 2);
+                            mostraVanoSuCanvasTavolo(contestoCanvas, 3);
+                            mostraVanoSuCanvasTavolo(contestoCanvas, 4);
+                        }
+
+                        function mostraVanoSuCanvasTavolo(contestoCanvas, indiceVano) {
+                            var vano = vani[indiceVano];
+                            var immagineAllestimentoVano;
+                            if (vano.vanoScelto !== undefined) {
+                                immagineAllestimentoVano = document.getElementById('allestimento-vano-' + vano.vanoScelto);
+                            } else {
+                                immagineAllestimentoVano = document.getElementById('allestimento-vano-no_vano');
+                            }
+                            contestoCanvas.drawImage(immagineAllestimentoVano, vano.coordinataX, vano.coordinataY);
+                        }
+
+                        // Si vedono gli elementi select e td > h3 uno alla volta, parte dal primo che si mantengono man mano che vengono fatti //FUNZIONA
+                        let selects = document.querySelectorAll("select");
+                        let h3 = document.querySelectorAll("h3");
+                        // Nascondi tutti i select e h3 tranne il primo
+                        for (let i = 1; i < selects.length; i++) {
+                            selects[i].style.display = "none";
+                            if (i < h3.length) {
+                                h3[i].style.display = "none";
+                            }
+                        }
+                        for (let i = 0; i < selects.length; i++) {
+                            // Se il select ha un solo valore, aggiungi un listener per l'evento 'click'
+                            if (selects[i].options.length === 1 && selects[i].options[0].value !== "") {
+                                selects[i].addEventListener("click", function() {
+                                    if (i + 1 < selects.length) {
+                                        selects[i + 1].style.display = "block";
+                                    }
+                                    if (i + 1 < h3.length) {
+                                        h3[i + 1].style.display = "block"; // Mostra l'elemento h3 successivo
+                                    }
+                                });
+                            } else {
+                                // Altrimenti, aggiungi un listener per l'evento 'change'
+                                selects[i].addEventListener("change", function() {
+                                    if (this.value !== "") { // Controlla se il valore è valido
+                                        if (i + 1 < selects.length) {
+                                            selects[i + 1].style.display = "block";
+                                        }
+                                        if (i + 1 < h3.length) {
+                                            h3[i + 1].style.display = "block"; // Mostra l'elemento h3 successivo
+                                        }
+                                    }
+                                });
+                            }
+                        }
+
+
+
+                        //button precompila 
+                        document.getElementById('button-precompilo').addEventListener('click', function() {
+                            var sigla = document.getElementById('text-areainiziale').value;
+                            var regex = /\s{2,}/; // Regex per controllare se ci sono più spazi
+                            if (regex.test(sigla)) {
+                                alert('Attenzione agli spazi');
+                                return;
+                            } else if (!sigla.includes(' ')) {
+                                alert('Attenzione, inserire uno spazio tra i valori: B R GN B 1 99 H1 D1 PDX j p.');
+                                return;
+                            }
+                            sigla = sigla.split(' ');
+                            var ids = ['linea_tavoli_o_linea_pensili', 'compressore_autonomo_o_compressore_remoto', 'tavolo_gastronorm_o_tavolo_backnorm', 'campo_temperatura', 'numero_di_vani', 'numero_di_teglie', 'altezza', 'profondita', 'allestimento_vano_1', 'allestimneto_vano_2', 'allestimento_vano_3', 'allestimento_vano_4', 'piedini', 'rivestimento', 'pompa', 'foro'];
+                            var checkboxValues = {'piedini': 'j', 'rivestimento': 'r', 'pompa': 'p', 'foro': 's'};
+                            for (var i = 0; i < sigla.length; i++) {
+                                var select = document.getElementById(ids[i]);
+                                if (select.tagName.toLowerCase() === 'select') {
+                                    var found = false;
+                                    for (var j = 0; j < select.options.length; j++) {
+                                        if (select.options[j].value === sigla[i]) {
+                                            select.selectedIndex = j;
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!found) {
+                                        alert('Controlla meglio i valori');
+                                        return;
+                                    }
+                                } else if (select.tagName.toLowerCase() === 'input' && select.type === 'checkbox') {
+                                    if (sigla.includes(checkboxValues[ids[i]])) {
+                                        select.checked = true;
+                                        select.style.display = 'block'; // Mostra la checkbox
+                                    } else {
+                                        select.checked = false;
+                                    }
+                                } 
+                            }
+                            // Chiamata alla funzione nascondiOpzioni dopo aver precompilato i select 
+                            nascondiOpzioni();
+                        });
+                        
+
+
+
+                    //checkbox_piedini
+                    document.getElementById("piedini").addEventListener("change", function() {
+                    var textarea = document.getElementById("contenitore-sigla");
+                    if(this.checked) {
+                        // Aggiungi la lettera 'J' alla textarea solo se non è già presente
+                        if(textarea.value.indexOf('j') === -1) {
+                            textarea.value += 'j';
+                        }
+                    } else {
+                        // Rimuovi la lettera 'J' dalla textarea
+                        textarea.value = textarea.value.replace('j', '');
+                    }
+                    }); 
+
+                    //checkbox_rivestimento
+                    document.getElementById("rivestimento").addEventListener("change", function() {
+                    var textarea = document.getElementById("contenitore-sigla");
+                    if(this.checked) {
+                        // Aggiungi la lettera 'R' alla textarea solo se non è già presente
+                        if(textarea.value.indexOf('r') === -1) {
+                            textarea.value += 'r';
+                        }
+                    } else {
+                        // Rimuovi la lettera 'R' dalla textarea
+                        textarea.value = textarea.value.replace('r', '');
+                    }
+                    }); 
+
+                    //checkbox_pompa
+                    document.getElementById("pompa").addEventListener("change", function() {
+                    var textarea = document.getElementById("contenitore-sigla");
+                    if(this.checked) {
+                        // Aggiungi la lettera 'P' alla textarea solo se non è già presente
+                        if(textarea.value.indexOf('p') === -1) {
+                            textarea.value += 'p';
+                        }
+                    } else {
+                        // Rimuovi la lettera 'P' dalla textarea
+                        textarea.value = textarea.value.replace('p', '');
+                    }
+                    }); 
+
+                    //checkbox_foro
+                    document.getElementById("foro").addEventListener("change", function() {
+                    var textarea = document.getElementById("contenitore-sigla");
+                    if(this.checked) {
+                        // Aggiungi la lettera 'S' alla textarea solo se non è già presente
+                        if(textarea.value.indexOf('s') === -1) {
+                            textarea.value += 's';
+                        }
+                    } else {
+                        // Rimuovi la lettera 'S' dalla textarea
+                        textarea.value = textarea.value.replace('s', '');
+
+                    }
+                    }); 
+
+
+                    // Funziona per sbloccare i select 
+                    document.getElementById('button34').addEventListener('click', function() {
+                        var selectElements = document.querySelectorAll('select');
+                        var h3Elements = document.querySelectorAll('h3');
+                        var checkboxElements = document.querySelectorAll('input[type=checkbox]'); // Aggiunto per le checkbox
+
+                        for (var i = 0; i < selectElements.length; i++) {
+                            selectElements[i].style.display = 'block';
+                        }
+                        for (var i = 0; i < h3Elements.length; i++) {
+                            h3Elements[i].style.display = 'block';
+                        }
+                        for (var i = 0; i < checkboxElements.length; i++) { // Aggiunto per le checkbox
+                            checkboxElements[i].style.display = 'block';
+                        }
+                    });
+
+
+
+                    //Se la selezione è l'abbattitore spariscono la rivestimento e la foro; se è selezionato il pensile sparisce solo la foro; se è selezionato armadio checkbox 1 e 3 
+                    //spariscono FUNZIONANTE
+                    const linea_tavoli_o_linea_pensili = document.getElementById('linea_tavoli_o_linea_pensili');
+                    const rivestimento = document.getElementById('rivestimento');
+                    const foro = document.getElementById('foro');
+                    linea_tavoli_o_linea_pensili.addEventListener('change', function() {
+                        if (this.value === 'B') {
+                            rivestimento.disabled = true;
+                            foro.disabled = true;
+                        } else if (this.value === 'P') {
+                            foro.remove();
+                            foro = null;
+                        } else {
+                            rivestimento.disabled = false;
+                            if (this.value === 'P') {
+                                foro = document.createElement('input');
+                                foro.type = 'checkbox';
+                                foro.id = 'foro';
+                                document.body.appendChild(foro);
+                            }
+                            if (this.value === 'A') {
+                                rivestimento.disabled = true;
+                                foro.disabled = true;
+                                document.body.appendChild(foro);
+                            }
+                        }
+                    });
+
+            
+            
+                    //Tolgo la checkbox del foro quando sono dei tavoli con meno di 4 vani 
+                    $('select#linea_tavoli_o_linea_pensili, select#numero_di_vani').on('change', function() {
+                    var lineaTavoliOPensili = $('select#linea_tavoli_o_linea_pensili').val();
+                    var numeroDiVani = $('select#numero_di_vani').val();
+                    if (lineaTavoliOPensili === 'T' && numeroDiVani < 4) {
+                        $('input#foro').prop('disabled', true);
+                    } else {
+                        $('input#foro').prop('disabled', false);
+                    }
+                    });
+
+                    
+                    //Checkbox a scomparsa
+                    document.addEventListener('DOMContentLoaded', (event) => {
+                        // Nascondi inizialmente tutte le checkbox e gli h3
+                        document.querySelectorAll('.checkbox, .h3-finali').forEach((element) => {
+                            element.style.display = 'none';
+                        });
+
+                        // Aggiungi un listener per l'evento 'change' al select
+                        document.querySelector('#allestimento_vano_1').addEventListener('change', (event) => {
+                            // Quando il select viene modificato, mostra le checkbox e gli h3
+                            // se il valore selezionato è diverso da 'null'
+                            if (event.target.value !== '') {
+                                document.querySelectorAll('.checkbox, .h3-finali').forEach((element) => {
+                                    element.style.display = 'block';
+                                });
+                            }
+                        });
+                    })
+
+                    
+                    //script per il textarea readonly
+                    $(window).on('load', function() {
+                        var ids = ["linea_tavoli_o_linea_pensili", "compressore_autonomo_o_compressore_remoto", "tavolo_gastronorm_o_tavolo_backnorm", "campo_temperatura", "numero_di_vani", "numero_di_teglie", "altezza", "profondita", "allestimento_vano_1", "allestimento_vano_2", "allestimento_vano_3", "allestimento_vano_4"];
+                        var contenitoreSigla = $("#contenitore-sigla");
+                        contenitoreSigla.prop('readonly', true);
+
+                        $.each(ids, function(index, id) {
+                            $("#" + id).change(function() {
+                                var values = $.map(ids, function(id) {
+                                    var fullText = $("#" + id + " option:selected").text().trim();
+                                    var sigla = fullText.split(' ').pop();  // Prendi solo la sigla
+                                    return sigla;
+                                });
+                                contenitoreSigla.val(values.join(" ").toUpperCase());
+                            });
+                        });
+                    });
+
+
+
+
+
+
+        </script>
+
+        <script>     
+
+            // Seleziona gli elementi
+            let lineaTavoliOLineaPensili = document.querySelector('#linea_tavoli_o_linea_pensili');
+            let compressoreAutonomoOCompressoreRemoto = document.querySelector('#compressore_autonomo_o_compressore_remoto');
+            let campoTemperatura = document.querySelector('#campo_temperatura');
+            let numeroDiVani = document.querySelector('#numero_di_vani');
+            let numeroDiTeglie = document.querySelector('#numero_di_teglie');
+            let altezza = document.querySelector('#altezza');
+            let profondita = document.querySelector('#profondita');
+            let allestimentoVano1 = document.querySelector('#allestimento_vano_1');
+            let allestimentoVano2 = document.querySelector('#allestimento_vano_2');
+            let tavolo = document.querySelector('#tavolo_gastronorm_o_tavolo_backnorm');
+
+
+
+            // Evento onchange per il select lineaTavoliOLineaPensili
+            lineaTavoliOLineaPensili.onchange = function() {
+                if(this.value === 'B') { // Abbattitore
+                    nascondiOpzioni('compressore_autonomo_o_compressore_remoto', ['A']);
+                    nascondiOpzioni('campo_temperatura', ['N']);
+                    nascondiOpzioni('numero_di_vani', ['2', '3', '4']);
+                    nascondiOpzioni('numero_di_teglie', ['0']);
+                    nascondiOpzioni('altezza', ['H2']);
+                    nascondiOpzioni('profondita', ['D2', 'D3']);
+                    nascondiOpzioni('allestimento_vano_1', ['F', 'E', 'G', 'I', 'L']);
+                } else if(this.value === 'P') { // Pensili
+                    nascondiOpzioni('tavolo_gastronorm_o_tavolo_backnorm', ['BK']);
+                    nascondiOpzioni('numero_di_vani', ['3', '4']);
+                    nascondiOpzioni('numero_di_teglie', ['9', '99']);
+                    nascondiOpzioni('altezza', ['H2']);
+                    nascondiOpzioni('profondita', ['D1', 'D3']);
+                    nascondiOpzioni('allestimento_vano_1', ['F', 'E', 'G', 'I', 'L']);
+                }
+                else if(this.value === 'A') { //Armadi
+                    nascondiOpzioni('compressore_autonomo_o_compressore_remoto', ['A']);
+                    nascondiOpzioni('tavolo_gastronorm_o_tavolo_backnorm', ['BK']);
+                    nascondiOpzioni('numero_di_vani', ['2', '3', '4']);
+                    nascondiOpzioni('numero_di_teglie', ['9', '99']);
+                    nascondiOpzioni('altezza', ['H2']);
+                    nascondiOpzioni('profondita', ['D2', 'D3']);
+                    nascondiOpzioni('allestimento_vano_1', ['F', 'E', 'G', 'I', 'L']);
+                    nascondiOpzioni('allestimento_vano_2', ['F', 'E', 'G', 'I', 'L']);
+                }
+            }
+            profondita.onchange = function() {
+                if(this.value === 'D2') {//Tavoli con d2
+                    nascondiOpzioni('tavolo_gastronorm_o_tavolo_backnorm', ['BK']);
+                    nascondiOpzioni('numero_di_vani', ['3', '4']);
+                    nascondiOpzioni('numero_di_teglie', ['9', '99']);
+                    nascondiOpzioni('altezza', ['H2', 'H3']);
+                    nascondiOpzioni('allestimento_vano_1', ['F', 'E', 'G', 'I', 'L']);
+                    nascondiOpzioni('allestimento_vano_2', ['F', 'E', 'G', 'I', 'L']);
+                }else if(this.value === 'D3') {//Tavoli con d3
+                    nascondiOpzioni('tavolo_gastronorm_o_tavolo_backnorm', ['GN']);        
+                    nascondiOpzioni('numero_di_vani', ['1', '4']);
+                    nascondiOpzioni('numero_di_teglie', ['9', '99']);
+                    nascondiOpzioni('altezza', ['H2']);
+                    nascondiOpzioni('allestimento_vano_1', ['F', 'E', 'G', 'I', 'L']);
+                    nascondiOpzioni('allestimento_vano_2', ['F', 'E', 'G', 'I', 'L']);    
+                }
+            }    
+            altezza.onchange = function() {
+                if(this.value === 'H2') {//Tavoli con h2
+                    nascondiOpzioni('tavolo_gastronorm_o_tavolo_backnorm', ['BK']);
+                    nascondiOpzioni('numero_di_vani', ['1', '4']);
+                    nascondiOpzioni('numero_di_teglie', ['9', '99']);
+                    nascondiOpzioni('profondita', ['D2', 'D3']);
+                    nascondiOpzioni('allestimento_vano_1', ['PDX','PSX','VDX','VSX','F', 'E', 'G']);
+                    nascondiOpzioni('allestimento_vano_2', ['PDX','PSX','VDX','VSX','F', 'E', 'G']);   
+                }  
+            }
+            teglie.onchange = function() {
+                if(this.value === 'T') {//Tavoli
+                    nascondiOpzioni('numero_di_teglie', ['9', '99']);                
+                }  
+            }
+
+
+
+            function nascondiOpzioni(selectId, valori) {
+                let select = document.getElementById(selectId);
+                let visibleOptions = 0;
+                let visibleValue;
+
+                for (let i = 0; i < select.options.length; i++) {
+                    if (valori.includes(select.options[i].value)) {
+                        select.options[i].style.display = 'none';
+                        select.options[i].disabled = true; // disable the option
+                    } else {
+                        select.options[i].style.display = 'block';
+                        select.options[i].style.color = 'green';
+                        select.options[i].disabled = false; // enable the option
+                        visibleOptions++;
+                        visibleValue = select.options[i].value;
+                    }
+                }
+
+                // If only one option is visible, disable the select
+                if (visibleOptions === 1) {
+                    select.value = visibleValue;
+                    select.disabled = true;
+                } else {
+                    select.disabled = false;
+                }
+            }
+
+            
+
+
+            // Visualizzazione numero di vani 
+            document.addEventListener('DOMContentLoaded', function() {
+                // disabilita tutti i select all'inizio
+                for (var i = 1; i <= 4; i++) {
+                    document.getElementById('allestimento_vano_' + i).disabled = true;
+                }
+
+                document.getElementById('numero_di_vani').addEventListener('change', function() {
+                    var selectedValue = parseInt(this.value);
+
+                    // disabilita tutti i select
+                    for (var i = 1; i <= 4; i++) {
+                        document.getElementById('allestimento_vano_' + i).disabled = true;
+                    }
+
+                    // abilita i select in base al valore selezionato
+                    for (var i = 1; i <= selectedValue; i++) {
+                        document.getElementById('allestimento_vano_' + i).disabled = false;
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            // Ottieni tutti gli elementi select nella pagina
+            let selectsa = document.querySelectorAll('select');
+            let textArea = document.getElementById('contenitore-sigla'); // Sostituisci con l'ID della tua textarea
+
+            selectsa.forEach((select) => {
+            // Se un select ha solo una opzione visibile, selezionala automaticamente
+            let visibleOptions = Array.from(select.options).filter(option => option.style.display !== 'none');
+            if (visibleOptions.length === 1) {
+                select.value = visibleOptions[0].value;
+
+                // Aggiungi il valore alla textarea
+                textArea.value += select.value + '\n';
+
+                // Salta al prossimo elemento
+                let nextElement = select.nextElementSibling;
+                if (nextElement) {
+                nextElement.focus();
+                }
+            }
+            });
+
+
+            /*document.addEventListener("DOMContentLoaded", function() {
+                var selects = document.querySelectorAll("select");
+
+                selects.forEach(function(select) {
+                    select.addEventListener("change", function(){
+                        if (this.selectedIndex === 0) {
+                            location.reload();
+                        }
+                    });
+                });
+            });*/
+
+            document.addEventListener("DOMContentLoaded", function() {
+                var select = document.getElementById("linea_tavoli_o_linea_pensili");
+                var initialValue;
+
+                select.addEventListener("change", function(){
+                    // Se il valore iniziale non è stato ancora impostato, lo impostiamo al primo valore selezionato dall'utente
+                    if (!initialValue) {
+                        initialValue = this.value;
+                    }
+                    // Se il valore è cambiato rispetto al valore iniziale, ricarica la pagina
+                    else if (this.value !== initialValue) {
+                        location.reload();
+                    }
+                });
+            });
+
+
+        // Blocca tutti i select quando il bottone con id 'button-precompilo' viene premuto
+        document.getElementById('button-precompilo').addEventListener('click', function() {
+                var selects = document.getElementsByTagName('select');
+                for(var i = 0; i < selects.length; i++) {
+                    selects[i].disabled = true;
+                }
+
+            // Aggiungi un pallino di notifica al button1
+            var button1 = document.getElementById('button1');
+            var notificationDot = document.createElement('span');
+            notificationDot.classList.add('notification-dot');
+            button1.appendChild(notificationDot);
+
+            // Mostra un alert quando si passa sopra il mouse
+            button1.addEventListener('mouseover', function() {
+                alert('Premi per la configurazione personalizzata');
+            });
+        });
+
+
+
+        $(document).ready(function() {
+            var isBlocked = false;
+            $('select').each(function() {
+                if (isBlocked) {
+                    // Seleziona e mostra i td, h3 e select successivi
+                    $(this).nextAll('td, h3, select').show();
+                }
+                // Controlla se il select è disabilitato
+                if ($(this).is(':disabled')) {
+                    isBlocked = true;
+                } else {
+                    isBlocked = false;
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
+    <!---08/11/23-->
+    <!---Aggiunte checkbox al posto dei select (Allestimento con piedini, Versioni pannelli con rivestimento, Pompa e Foro Saladette) {non ancora collegati alla sigla finale}-->     <!---Aggiunta un valore per la profondità-->     
+    <!---Aggiunto Abbattitore sulla linea dei tavoli-->    
+    <!---Aggiunto blocco per gli allestimenti( se ci sono 2 vani i vani 3 e 4 non sono modificabili ma bloccati/nascosti)-->     
+    <!---Modificata visuallizzazione dei select (uno alla volta)-->
+    <!---Da riga 408 a 418 ho provato a fare il numero di teglie per l'abbatitore cercando di 'nascondere' il numero di vani per rimpiazzarlo con 'numero di teglie'-->
+    <!---SE SI INSERISCE SIGLA DI PARTENZA BISOGNA PRIMA AVER COMPILATO TUTTI I SELECT--> 
+    <!---Inserito il "Numero di teglie bisogna attivarlo quando sulla prima voce c'è abbattitore"-->
+
+    <!---14/11/23--->
+    <!---Sistemata la visualizzazione dei select, td e rispettivi h3 ( quando viene selezionato il select la visulazzione delle selezioni e dei rispettivi testi va avanti)--->
+    <!---A riga 924 ho provato a fare la visulizzazione se è un abbattitore, quindi nasconde numero di vani e si aggiunge numero di teglie (non perfettamente funzionante)-->
+    <!---A riga 879 ho messo che se sulla linea_tavoli_o_pensili è selezionato il pensile la checkbox "foro_saledette" scompare non perfettamente funzionante-->
+    <!---A riga 892 ho messo che se sulla linea tavoli_o_pensili è selezionato l' abbatitore le checkbox "versione di rivestimento" e "foro saledette" scompaiono-->
+    <!--- Per l'armadio si cancellano le ultime checkbox e il numero di vani rimane 1 -->
+    <!--- Modificato colori estetica-->
+    <!---Checkbox non danno più undefined sulla barra della sigla sotto (devo vedere perchè la barra non riceve i dati)-->
+    <!---Modifato pulsante precompila in alto a destra -->
+    <!---Creato tasto reset-->
+
+    <!---15/11/23-->
+    <!---Corretto il funzionamento della visualizzazione delle checkbox per abbattitore e pensile-->
+    <!---Aggiunta scritta di attenzione sotto la sigla di partenza-->
+    <!---Aggiunto button che "sblocca" i select (utile in caso siano bloccati, visto che non sono cliccabili il select successivo non si sblocca con il buttone risolviamo il problema)-->
+    <!---Aggiunto css per buttone "Select Successivo"-->
+    <!---Modificato css button precompila e button reset-->
+    <!---Finita configurazione abbattitotore-->
+    <!---Fatta configurazione armadio-->
+    <!---Fatta configurazione abbattitore-->
+    <!---Sistemata configurazione Pensile-->
+    <!---Tolto il select numero_di_teglie quando si stava configurando un tavolo (mettere altezza e profondità dopo numero di teglie)-->
+    
+    <!---21/11/23-->
+    <!---Rigurdato e corretto la visualizzazione dei select, vani selezionabili con il numero-->
+    <!---Corretto checkbox pensile e abbattitore-->
+    <!---Finita visualizzazione per l'abbattitore-->
+    <!---Coretta visualizzazione del pensile-->
+    <!---Cambiato bottone per sbloccare le scelte/s-->
+    <!---Modificato scritta di attenzione-->
+    <!---Sistemato la barra sigla di partenza-->
+    <!---Iniziata visualizzazione Armadi mancano alcune cose-->
+
+    <!---22/11/23-->
+    <!---METTERE APPOSTO IL TASTO PRECOMPILA--> 
+
+    <!---Finita visualizzazione abbattitori-->
+    <!---Manca select del compressore remoto sul armadio-->
+    <!---Messo che se il numeri di vani è inferiore a 4 la checkbox del foro_saladette si blocca-->
+    <!---Tolto che sul pensile si poteva selezionare il numero delle teglie (cosa che è possibile fare solo sull'abbattitore) -->
+    <!---Sistemata la visualizzazione dei select dell'armadio-->
+    <!---SISTEMATO LE CHECKBOX CON APPOSITI VALORI CHE VENGONO INSERITI E TOLTI NELLA TEXTAREA READONLY -->
+    
+    <!---28/11/23-->
+    <!---Fatto il bottone precompila ora bisogna riguardare le casistiche-->
+    <!---Aggiunta schermata inziale-->
+    <!---Modificato i bottoni-->
+    <!---Aggiunti placeholder sopra e sotto la text-area iniziale-->
+    
+    <!---29/11/23-->
+    <!---Aggiunto logo sulla schermata di blocco-->
+    <!---Aggiunto il timer, testi e la percentuale di caricamento sulla schermata di blocco -->
+    <!---Sistemato il tasto reset (ora non aggiorna più la pagina)-->
+    <!---Aggiunto alertbox per la textarea-->
+    <!---Modificato il css del box posizionato sopra il reset-->
+    <!---Aggiunto pulsante per copiare la sigla finale-->
+    <!---Messo a posto l'areatext della sigla finala, ora si vedono tutti i valori (quando vengono selezionati a mano)-->
+    
+    <!---05/12/23-->
+    <!---Sistemati i tasti del configuratore tavoli-->
+    <!---Sistemata Visualizzazione dei td, h3 e select -->
+    <!---Sistemato il tasto reset -->
+    <!---Aggiunta icona sul browser-->
+    <!---Verificato funzionamento select e sigla iniziale-->
+
+    <!---06/12/23-->
+    <!---MODIFICARE-->
+    <!---Tolti tutti gli script per il funzionamento del armadio, pensile, abbattiotore ecc.-->
+    <!---Rifatto meglio tasto reset  -->
+    <!---Tolte alcune cose che dopo aver rifatto alcun script non servivano più come alertbox e consigli sotto la textarea-->
+
+    <!---19/12/23-->
+    <!---La visualizzazione dei select funziona ma solo una (l'ultima)-->
+    <!---Mettere apposto il precompila della sigla inziziale che funziona soltanto mettendo gli spazi tra i valori quando voglio che se inserisco il valore che mi da alla fine funziona-->
+    <!---Messi gli spazi sul tex-area finale quello read only-->
+    <!---Ho commentato la parte del button precompila iniziale dove mettendo la sigla si autocompilano checkbox e select-->
+
+    <!---20/12/23-->
+    <!---Rifatto il button precompila-->
+    <!---Aggiunti alert quando si inserisce la sigla -->
+    <!---Sistemata la visualizzazione dei select numero_di_teglie-->
+    <!---Aggiunti css che rendono tutto più ordinato-->
+    <!---Aggiunto script che quando sul primo select si cambia selezione il resto dei select viene aggiornato e vengono resi riselezionabili-->
+    <!---Aggiunto alert che avvisa se mancano valori-->
+    <!---DEVO SISTEMARE LA VISUALIZZAZIONE DEI SELECT VA SOLO L'ULTIMO (QUANDO VIENE FATTO QUELLO è FINITO IL PROGRAMMA)-->
