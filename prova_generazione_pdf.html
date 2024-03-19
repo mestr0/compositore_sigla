@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="css/imported/bootstrap.css" rel="stylesheet">        
+        <link href="css/main.css" rel="stylesheet">        
+
+        <script type="text/javascript" src="js/imported/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/imported/jspdf_master/jspdf.min.js"></script>
+
+
+    </head>
+    <body>
+        <div id="content">
+            <h3>Hello, this is a H3 tag</h3>
+            <p>a pararaph</p>
+            <table>
+                <tr>
+                    <td><h4>A</h4></td>
+                    <td><h4>B</h4></td>
+                </tr>
+                <tr>
+                    <td><h4>C</h4></td>
+                    <td><h4>D</h4></td>
+                </tr>
+                <tr>
+                    <td><h4>E</h4></td>
+                    <td><h4>F</h4></td>
+                </tr>
+            </table>
+        </div>
+        <div id="editor"></div>
+        <button id="cmd">Generate PDF</button>
+
+        <script>
+            function generaPdfDaHtml(selettoreContenuto, nomeFile) {
+                var doc = new jsPDF();                
+                doc.fromHTML($(selettoreContenuto).html(), 15, 15, {
+                    'width': 170
+                });
+                doc.save(nomeFile);
+            }
+            $('#cmd').click(function () {
+                generaPdfDaHtml('div#content','sample-file.pdf');
+            });
+        </script>
+    </body>
+
+
+</html>

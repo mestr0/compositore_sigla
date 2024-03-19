@@ -1,0 +1,157 @@
+/* Impostazioni generali */
+body, h3, h1, h2  {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #fff;
+}
+
+td {
+background-color: #fff;
+color: #333;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-size: 16px;
+padding: 10px;
+border: none;
+text-align: left;
+}
+
+tr {
+border: none;
+}
+
+body {
+line-height: 1.6;
+font-size: 16px;
+}
+
+h1 {
+font-size: 2em;
+color: #111;
+}
+
+h2 {
+font-size: 1.5em;
+color: #222;
+}
+
+h1, h2, h3 {
+padding: 10px 0;
+/*border-bottom: 1px solid #ddd;*/
+}
+
+.loader {
+    overflow: invisible;
+    height: fit-content;
+    width: fit-content;
+    padding: 20px;
+    display: flex;
+    position: relative;
+}
+
+.logo {
+    background-image: 
+  url('http://www.cibinrefrigerazione.com/2015/index.php/it/');
+    opacity: 0;
+    animation: load 2s forwards;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: none;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.logo:active {
+    transform: scale(0.9);
+}
+
+@keyframes load {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.loader::before {
+    content: "Si prega di attendere per il configuratore.";
+    position: absolute;
+    bottom: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    font-style: italic;
+}
+
+.loader::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, transparent 50%, blue 50%);
+    background-size: 200% 100%;
+    animation: loading 2s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.spinner {
+  box-shadow: 0 0 0 5px #42a5f5, inset 0 0 0 1px #42a5f5;
+  position: relative;
+  height: 50px;
+  width: 180px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.spinner::before {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #42a5f5;
+  animation: load_5123 13s linear infinite;
+}
+
+
+@keyframes load_5123 {
+  0% {
+    width: 0;
+  }
+
+  40%,
+  50% {
+    width: 100%;
+  }
+
+  90%,
+  100% {
+    width: 0;
+  }
+}
+
+
+#loadingPercentage {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  animation: loading 6s linear forwards;
+}
