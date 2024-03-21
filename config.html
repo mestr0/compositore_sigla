@@ -171,12 +171,27 @@
                                     </div>
                                 </td>
                             </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <tr>
                                 <td>
-                                    <h3>Numero di vani</h3>
+                                    <h3>Numero di Vani</h3>
                                 </td>
                                 <td>
-                                    <div class="form-group">
+                                    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
                                         <select class="form-control controllo-costruzione-sigla" id="numero_di_vani" onchange="unlock('numero_di_teglie')" >
                                             <option value=""></option>
                                             <option value="1">1</option>
@@ -184,24 +199,126 @@
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                         </select>
+                                        <button id="myButton1">
+                                            <a>Avanti</a>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
+                            <script>   
+                                document.getElementById('linea_tavoli_o_linea_pensili').addEventListener('change', function() {
+                                    var selectVani = document.getElementById('numero_di_vani');
+                                    var button = document.getElementById('myButton1');
+                                    if (this.value === 'B') {
+                                        selectVani.disabled = true;
+                                        button.style.display = 'inline-block';
+                                    } else {
+                                        selectVani.disabled = false;
+                                        button.style.display = 'none';
+                                    }
+                                });
+                            
+                                document.getElementById('myButton1').addEventListener('click', function() {
+                                    var selectElements = document.querySelectorAll('select');
+                                    var h3Elements = document.querySelectorAll('h3');
+                                    var checkboxElements = document.querySelectorAll('input[type=checkbox]');
+                            
+                                    for (var i = 0; i < selectElements.length; i++) {
+                                        selectElements[i].style.display = 'block';
+                                    }
+                                    for (var i = 0; i < h3Elements.length; i++) {
+                                        h3Elements[i].style.display = 'block';
+                                    }
+                                    for (var i = 0; i < checkboxElements.length; i++) {
+                                        checkboxElements[i].style.display = 'block';
+                                    }
+                            
+                                    // Aggiungi qui il codice per visualizzare il select "allestimento_vano_1"
+                                    document.getElementById('numero_di_teglie').style.display = 'block';
+                                });
+                            </script> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <tr>
                                 <td>
-                                    <h3>Numero di teglie</h3>
+                                    <h3>Numero di Teglie</h3>
                                 </td>
                                 <td>
-                                    <div class="form-group">
-                                        <select class="form-control controllo-costruzione-sigla" id="numero_di_teglie" onchange="unlock('altezza')" >
+                                    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <select class="form-control controllo-costruzione-sigla" id="numero_di_teglie"  onchange="unlock('allestimento_vano_1')" >
                                             <option value=""></option>
                                             <option value="0">0</option>
                                             <option value="9">9</option>
                                             <option value="99">18</option>
                                         </select>
+                                        <button id="myButton" style="display: none;">
+                                            <a>Avanti</a>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
+                            <script>                                
+                                document.getElementById('linea_tavoli_o_linea_pensili').addEventListener('change', function() {
+                                    var selectTeglie = document.getElementById('numero_di_teglie');
+                                    var button = document.getElementById('myButton');
+                                    if (this.value === 'T' || this.value === 'A' || this.value === 'P') {
+                                        selectTeglie.disabled = true;
+                                        button.style.display = 'inline-block';
+                                    } else {
+                                        selectTeglie.disabled = false;
+                                        button.style.display = 'none';
+                                    }
+                                });
+
+                                document.getElementById('myButton').addEventListener('click', function() {
+                                    var selectElements = document.querySelectorAll('select');
+                                    var h3Elements = document.querySelectorAll('h3');
+                                    var checkboxElements = document.querySelectorAll('input[type=checkbox]');
+
+                                    for (var i = 0; i < selectElements.length; i++) {
+                                        selectElements[i].style.display = 'block';
+                                    }
+                                    for (var i = 0; i < h3Elements.length; i++) {
+                                        h3Elements[i].style.display = 'block';
+                                    }
+                                    for (var i = 0; i < checkboxElements.length; i++) {
+                                        checkboxElements[i].style.display = 'block';
+                                    }
+
+                                    // Aggiungi qui il codice per visualizzare il select "allestimento_vano_1"
+                                    document.getElementById('allestimento_vano_1').style.display = 'block';
+                                });
+                            </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                             <tr>
                                 <td>
@@ -386,6 +503,49 @@
             </div>
         </div>
     </div>               
+    <script>
+        // Aggiungi un event listener al select 'numero_di_vani'
+        document.getElementById('numero_di_vani').addEventListener('change', function() {
+            // Ottieni i select 'allestimento_vano'
+            var vano1 = document.getElementById('allestimento_vano_1');
+            var vano2 = document.getElementById('allestimento_vano_2');
+            var vano3 = document.getElementById('allestimento_vano_3');
+            var vano4 = document.getElementById('allestimento_vano_4');
+    
+            // Se 'numero_di_vani' è 1, blocca gli altri select
+            if (this.value == '1') {
+                vano1.disabled = false;
+                vano2.disabled = true;
+                vano3.disabled = true;
+                vano4.disabled = true;
+            } 
+            // Se 'numero_di_vani' è 2, blocca gli altri select
+            else if (this.value == '2') {
+                vano1.disabled = false;
+                vano2.disabled = false;
+                vano3.disabled = true;
+                vano4.disabled = true;
+            } 
+            // Se 'numero_di_vani' è 3, blocca gli altri select
+            else if (this.value == '3') {
+                vano1.disabled = false;
+                vano2.disabled = false;
+                vano3.disabled = false;
+                vano4.disabled = true;
+            } 
+            // Se 'numero_di_vani' è 4, sblocca tutti i select
+            else if (this.value == '4') {
+                vano1.disabled = false;
+                vano2.disabled = false;
+                vano3.disabled = false;
+                vano4.disabled = false;
+            }
+        });
+    </script>
+
+
+
+
         <script>
 
             $(document).ready(function () {
@@ -927,45 +1087,60 @@
 
                         //button precompila 
                         document.getElementById('button-precompilo').addEventListener('click', function() {
-                            var sigla = document.getElementById('text-areainiziale').value;
-                            var regex = /\s{2,}/; // Regex per controllare se ci sono più spazi
-                            if (regex.test(sigla)) {
-                                alert('Attenzione agli spazi');
-                                return;
-                            } else if (!sigla.includes(' ')) {
-                                alert('Attenzione, inserire uno spazio tra i valori: B R GN B 1 99 H1 D1 PDX j p.');
-                                return;
-                            }
-                            sigla = sigla.split(' ');
-                            var ids = ['linea_tavoli_o_linea_pensili', 'compressore_autonomo_o_compressore_remoto', 'tavolo_gastronorm_o_tavolo_backnorm', 'campo_temperatura', 'numero_di_vani', 'numero_di_teglie', 'altezza', 'profondita', 'allestimento_vano_1', 'allestimneto_vano_2', 'allestimento_vano_3', 'allestimento_vano_4', 'piedini', 'rivestimento', 'pompa', 'foro'];
-                            var checkboxValues = {'piedini': 'j', 'rivestimento': 'r', 'pompa': 'p', 'foro': 's'};
-                            for (var i = 0; i < sigla.length; i++) {
-                                var select = document.getElementById(ids[i]);
-                                if (select.tagName.toLowerCase() === 'select') {
-                                    var found = false;
-                                    for (var j = 0; j < select.options.length; j++) {
-                                        if (select.options[j].value === sigla[i]) {
-                                            select.selectedIndex = j;
-                                            found = true;
-                                            break;
-                                        }
+                        var sigla = document.getElementById('text-areainiziale').value;
+                        var regex = /\s{2,}/; // Regex per controllare se ci sono più spazi
+                        if (regex.test(sigla)) {
+                            alert('Attenzione agli spazi');
+                            return;
+                        } else if (!sigla.includes(' ')) {
+                            alert('Attenzione, inserire uno spazio tra i valori: B R GN B 1 99 H1 D1 PDX j p.');
+                            return;
+                        }
+                        sigla = sigla.split(' ');
+                        var ids = ['linea_tavoli_o_linea_pensili', 'compressore_autonomo_o_compressore_remoto', 'tavolo_gastronorm_o_tavolo_backnorm', 'campo_temperatura', 'numero_di_vani', 'numero_di_teglie', 'altezza', 'profondita', 'allestimento_vano_1', 'allestimneto_vano_2', 'allestimento_vano_3', 'allestimento_vano_4', 'piedini', 'rivestimento', 'pompa', 'foro'];
+                        var checkboxValues = {'piedini': 'j', 'rivestimento': 'r', 'pompa': 'p', 'foro': 's'};
+                        for (var i = 0; i < sigla.length; i++) {
+                            var select = document.getElementById(ids[i]);
+                            if (select.tagName.toLowerCase() === 'select') {
+                                var found = false;
+                                for (var j = 0; j < select.options.length; j++) {
+                                    if (select.options[j].value === sigla[i]) {
+                                        select.selectedIndex = j;
+                                        found = true;
+                                        break;
                                     }
-                                    if (!found) {
-                                        alert('Controlla meglio i valori');
-                                        return;
-                                    }
-                                } else if (select.tagName.toLowerCase() === 'input' && select.type === 'checkbox') {
-                                    if (sigla.includes(checkboxValues[ids[i]])) {
-                                        select.checked = true;
-                                        select.style.display = 'block'; // Mostra la checkbox
-                                    } else {
-                                        select.checked = false;
-                                    }
-                                } 
-                            }
-                            // Chiamata alla funzione nascondiOpzioni dopo aver precompilato i select 
-                            nascondiOpzioni();
-                        });
+                                }
+                                if (!found) {
+                                    alert('Controlla meglio i valori');
+                                    return;
+                                }
+                            } else if (select.tagName.toLowerCase() === 'input' && select.type === 'checkbox') {
+                                select.style.display = 'inline'; // Mostra la checkbox
+                                if (sigla.includes(checkboxValues[ids[i]])) {
+                                    select.checked = true;
+                                } else {
+                                    select.checked = false;
+                                }
+                            } 
+                        }
+                        // Chiamata alla funzione nascondiOpzioni dopo aver precompilato i select 
+                        nascondiOpzioni();
+
+                        // Codice del button34 per mostrare tutti gli elementi
+                        var selectElements = document.querySelectorAll('select');
+                        var h3Elements = document.querySelectorAll('h3');
+                        var checkboxElements = document.querySelectorAll('input[type=checkbox]'); // Aggiunto per le checkbox
+
+                        for (var i = 0; i < selectElements.length; i++) {
+                            selectElements[i].style.display = 'block';
+                        }
+                        for (var i = 0; i < h3Elements.length; i++) {
+                            h3Elements[i].style.display = 'block';
+                        }
+                        for (var i = 0; i < checkboxElements.length; i++) { // Aggiunto per le checkbox
+                            checkboxElements[i].style.display = 'block';
+                        }
+                    });
                         
 
 
@@ -1057,38 +1232,43 @@
                             rivestimento.disabled = true;
                             foro.disabled = true;
                         } else if (this.value === 'P') {
-                            foro.remove();
-                            foro = null;
+                            foro.disabled = true;
                         } else {
                             rivestimento.disabled = false;
                             if (this.value === 'P') {
-                                foro = document.createElement('input');
-                                foro.type = 'checkbox';
-                                foro.id = 'foro';
-                                document.body.appendChild(foro);
+                                foro.disabled = false;
                             }
                             if (this.value === 'A') {
                                 rivestimento.disabled = true;
                                 foro.disabled = true;
-                                document.body.appendChild(foro);
                             }
                         }
                     });
 
-            
-            
-                    //Tolgo la checkbox del foro quando sono dei tavoli con meno di 4 vani 
+
+
+                    // Disabilita la checkbox del foro quando sono dei tavoli con meno di 4 vani 
                     $('select#linea_tavoli_o_linea_pensili, select#numero_di_vani').on('change', function() {
-                    var lineaTavoliOPensili = $('select#linea_tavoli_o_linea_pensili').val();
-                    var numeroDiVani = $('select#numero_di_vani').val();
-                    if (lineaTavoliOPensili === 'T' && numeroDiVani < 4) {
-                        $('input#foro').prop('disabled', true);
-                    } else {
-                        $('input#foro').prop('disabled', false);
-                    }
+                        var lineaTavoliOPensili = $('select#linea_tavoli_o_linea_pensili').val();
+                        var numeroDiVani = $('select#numero_di_vani').val();
+                        if (lineaTavoliOPensili === 'T' && numeroDiVani < 4) {
+                            $('input#foro').prop('disabled', true);
+                        } else {
+                            $('input#foro').prop('disabled', false);
+                        }
                     });
 
-                    
+                    // Aggiungi un listener per mostrare un messaggio quando si tenta di selezionare una checkbox disabilitata
+                    $('label').on('click', function(e) {
+                        var checkbox = $('#' + $(this).attr('for'));
+                        if (checkbox.is(':disabled')) {
+                            e.preventDefault();
+                            alert('Questa caratteristica non è per il tipo di macchina selezionato');
+                        }
+                    });
+
+
+
                     //Checkbox a scomparsa
                     document.addEventListener('DOMContentLoaded', (event) => {
                         // Nascondi inizialmente tutte le checkbox e gli h3
@@ -1339,22 +1519,6 @@
         });
 
 
-
-        $(document).ready(function() {
-            var isBlocked = false;
-            $('select').each(function() {
-                if (isBlocked) {
-                    // Seleziona e mostra i td, h3 e select successivi
-                    $(this).nextAll('td, h3, select').show();
-                }
-                // Controlla se il select è disabilitato
-                if ($(this).is(':disabled')) {
-                    isBlocked = true;
-                } else {
-                    isBlocked = false;
-                }
-            });
-        });
 
 
 
